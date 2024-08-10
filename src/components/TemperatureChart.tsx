@@ -38,7 +38,7 @@ const TemperatureChart: React.FC<TemperatureChartProps> = ({ hourlyData }) => {
     datasets: [
       {
         label: "Temperature (°C)",
-        data: hourlyData.map((dataPoint) => dataPoint.temp), // Convert from Kelvin to Celsius
+        data: hourlyData.map((dataPoint) => dataPoint.temp), 
         fill: false,
         borderColor: "rgba(10,192,192,1)",
         tension: 0.1,
@@ -62,7 +62,7 @@ const TemperatureChart: React.FC<TemperatureChartProps> = ({ hourlyData }) => {
         ticks: {
           callback: function (value: string | number) {
             if (typeof value === "number") {
-              return value.toFixed(1); // Format y-axis labels to one decimal place
+              return value.toFixed(1); 
             }
             return value;
           },

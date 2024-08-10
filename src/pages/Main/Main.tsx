@@ -8,14 +8,13 @@ import {
 } from "../../store/weatherSlice";
 import SearchInput from "../../components/SearchInput";
 import WeatherCard from "../../components/WeatherCard";
-import { Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import { AppDispatch } from "../../store/store";
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const weatherData = useSelector(selectWeatherData);
 
-  console.log(weatherData, 'weatherData');
 
  useEffect(() => {
    dispatch(loadStateFromLocalStorage());
@@ -23,24 +22,37 @@ const App: React.FC = () => {
  }, [dispatch]);
 
  return (
-   <div style={{display:'grid', justifyContent: 'center'}}>
+   <div style={{ display: "grid", gap: "40px", justifyContent: "center" }}>
      <SearchInput />
-     <Grid container  spacing={2} mt={4} maxWidth={"1200px"} >
-       {weatherData &&weatherData.map((data, index) =>   (
-
-        
-         <Grid item key={index} xs={12} sm={6} md={4}>
-           <WeatherCard
-             id={data.id}
-             city={data.city}
-             coordinates={data.coordinates}
-             temp={data.current.temp}
-             description={data.current.weather[0].description}
-             icon={data.current.weather[0].icon}
-           />
-         </Grid>
-       ))}
-     </Grid>
+     <Box
+       display={"flex"}
+       justifyContent={"center"}
+       flexWrap="wrap"
+       gap={2}
+       maxWidth={"1200px"}
+       width={"100%"}
+     >
+       {weatherData &&
+         weatherData.map((data, index) => (
+           <Box
+             key={index}
+             flexBasis="calc(33.333% - 16px)" 
+             maxWidth="calc(33.333% - 16px)" 
+             flexGrow={1} 
+             minWidth="280px" 
+             width="100%"
+           >
+             <WeatherCard
+               id={data.id}
+               city={data.city}
+               coordinates={data.coordinates}
+               temp={data.current.temp}
+               description={data.current.weather[0].description}
+               icon={data.current.weather[0].icon}
+             />
+           </Box>
+         ))}
+     </Box>
    </div>
  );
 };

@@ -52,7 +52,6 @@ const initialState: WeatherState = {
   error: null,
 };
 
-// Async thunk for fetching weather data
 export const fetchWeatherData = createAsyncThunk(
   "weather/fetchWeatherData",
   async ({ lat, lng, city }: Coordinates & { city: string }, { getState }) => {
@@ -70,7 +69,7 @@ export const fetchWeatherData = createAsyncThunk(
         ...response.data,
         city,
         coordinates: { lat, lng },
-        id: existingCity ? existingCity.id : uuidv4(), // Use existing ID if the city is already present
+        id: existingCity ? existingCity.id : uuidv4(), 
       },
     };
   }
@@ -132,10 +131,8 @@ const weatherSlice = createSlice({
             (data) => data.id === action.payload.data.id
           );
           if (existingCityIndex !== -1) {
-            // Update existing city data
             state.weatherData[existingCityIndex] = action.payload.data;
           } else {
-            // Add new city data
             state.weatherData.push(action.payload.data);
           }
           localStorage.setItem("weatherState", JSON.stringify(state));
