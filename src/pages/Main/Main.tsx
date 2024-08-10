@@ -41,6 +41,8 @@ const App: React.FC = () => {
              flexGrow={1} 
              minWidth="280px" 
              width="100%"
+             display={'grid'}
+             justifyItems={'start'}
            >
              <WeatherCard
                id={data.id}
