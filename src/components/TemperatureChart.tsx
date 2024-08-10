@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { Box } from "@mui/material";
 
 ChartJS.register(
   CategoryScale,
@@ -71,9 +72,9 @@ const TemperatureChart: React.FC<TemperatureChartProps> = ({ hourlyData }) => {
   };
 
   return (
-    <div>
+    <Box sx={{ width: "900px" }}>
       <Line data={data} options={options} />
-    </div>
+    </Box>
   );
 };
 

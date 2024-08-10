@@ -23,9 +23,9 @@ const App: React.FC = () => {
  }, [dispatch]);
 
  return (
-   <div>
+   <div style={{display:'grid', justifyContent: 'center'}}>
      <SearchInput />
-     <Grid container spacing={2} mt={4}>
+     <Grid container  spacing={2} mt={4} maxWidth={"1200px"} >
        {weatherData &&weatherData.map((data, index) =>   (
 
         
